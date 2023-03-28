@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'models/images_model.dart';
@@ -8,6 +7,8 @@ import 'widgets/image_list.dart';
 import 'package:http/http.dart' as http;
 
 class App extends StatefulWidget {
+  const App({super.key});
+
   @override
   State<App> createState() => AppState();
 }
@@ -34,8 +35,8 @@ class AppState extends State<App> {
       home: Scaffold(
         body: ImageList(images),
         floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
           onPressed: fetchImage,
+          child: const Icon(Icons.add),
         ),
         appBar: AppBar(
           title: const Text("Lets see some images!"),
