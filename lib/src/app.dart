@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'models/images_model.dart';
+import 'widgets/image_list.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -17,8 +18,8 @@ class AppState extends State<App> {
 
   void fetchImage() async {
     counter++;
-    var url = Uri.https('jsonplaceholder.typicode.com','/photos/$counter');
-     var response = await http.get(url);
+    final url = Uri.https('jsonplaceholder.typicode.com', '/photos/$counter');
+    final response = await http.get(url);
     if (response.statusCode == 200) {
       var imageModel = ImageModel.fromJson(json.decode(response.body));
       setState(() {
@@ -28,10 +29,10 @@ class AppState extends State<App> {
   }
 
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Text("$counter"),
+        body: ImageList(images),
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: fetchImage,
@@ -42,5 +43,4 @@ class AppState extends State<App> {
       ),
     );
   }
-
 }
